@@ -1,0 +1,109 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  min-height: 100vh;
+}
+header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo h1 {
+  font-size: 25px;
+  font-family: "Ramaraja";
+  color: #49a6fc;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+button {
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  width: 90px;
+  cursor: pointer;
+}
+.login {
+  background-color: #e0e0e0;
+  color: #49a6fc;
+}
+.login:hover {
+  background-color: #49a6fc;
+  color: white;
+}
+.signup {
+  background: #49a6fc;
+  color: white;
+  margin-left: 10px;
+}
+.signup:hover {
+  color: black;
+}
+section {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  color: #000;
+  font-family: "Sanchez";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 638px;
+  height: 395px;
+  flex-shrink: 0;
+}
+.title span {
+  color: #49a6fc;
+}
+.buddy {
+  height: 300px;
+  width: auto;
+}
+
+footer {
+  display: flex;
+  background-color: #49a6fc;
+  height: 50px;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  cursor: pointer;
+  gap: 40px;
+  align-items: center;
+}
+footer ul {
+  list-style: none;
+}
+footer ul li {
+  color: white;
+}
+footer ul li:hover {
+  color: #e0e0e0;
+}
+@media screen and (max-width: 700px) {
+  body {
+    display: block;
+  }
+}
