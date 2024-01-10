@@ -6,15 +6,12 @@
 }
 body {
   min-height: 100vh;
+  background-color: #fff;
 }
+/*HEADER*/
 header {
   display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 100px;
-  background-color: #fff;
+  padding: 10px 100px;
   justify-content: space-between;
   align-items: center;
 }
@@ -27,11 +24,6 @@ header {
   display: flex;
   align-items: center;
   gap: 5px;
-}
-
-img {
-  width: 40px;
-  height: 40px;
 }
 button {
   border-radius: 5px;
@@ -56,11 +48,17 @@ button {
 .signup:hover {
   color: black;
 }
+
+/*SECTIONS*/
 section {
   display: flex;
-  height: 100vh;
   align-items: center;
   justify-content: center;
+  padding: 10em 0;
+}
+img {
+  width: 40px;
+  height: 40px;
 }
 .title {
   color: #000;
@@ -80,14 +78,18 @@ section {
   height: 300px;
   width: auto;
 }
-
+/*FOOTER*/
 footer {
-  display: flex;
   background-color: #49a6fc;
-  height: 50px;
-  justify-content: center;
 }
-.footer {
+.footer-content{
+  padding: 1em 6em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-list {
   display: flex;
   cursor: pointer;
   gap: 40px;
@@ -96,12 +98,13 @@ footer {
 footer ul {
   list-style: none;
 }
-footer ul li {
+footer ul li, .footer-task-version {
   color: white;
 }
 footer ul li:hover {
   color: #e0e0e0;
 }
+/*MEDIA QUERIES*/
 @media screen and (max-width: 700px) {
   body {
     display: block;
