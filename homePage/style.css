@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #fff;
+}
+header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #e0e0e0;
+  box-shadow: 5px 5px 10px #e0e0e0;
+}
+header .navbar {
+  display: flex;
+  padding: 0.62rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 6rem;
+}
+.navbar .logo h1 {
+  font-size: 25px;
+  font-family: "Ramaraja";
+  color: #49a6fc;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .logo img {
+  width: 40px;
+  height: 40px;
+}
+.navbar button {
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  width: 90px;
+  cursor: pointer;
+}
+.navbar .logout {
+  background-color: #fff;
+  color: red;
+}
+.navbar .logout:hover {
+  background-color: #49a6fc;
+  color: white;
+}
+.user {
+  display: inline;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.container {
+  text-align: center;
+  margin-top: 20px;
+}
+.calendar {
+  display: flex;
+  margin-right: 25px;
+  height: 30px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.arrows {
+  height: 30px;
+  cursor: pointer;
+}
+.calName {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.task {
+  padding: 60px;
+  font-size: 30px;
+}
+p {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  padding: 5rem;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 10rem;
+}
+.create {
+  width: 200px;
+  height: 58px;
+  border-radius: 30px;
+  border-color: #49a6fc;
+  background-color: #fff;
+  color: #49a6fc;
+  cursor: pointer;
+}
+footer {
+  background-color: #49a6fc;
+  padding-bottom: 20px;
+}
+.footer-content {
+  padding: 2rem 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+}
+.footer-list {
+  display: flex;
+  cursor: pointer;
+  gap: 40px;
+  align-items: center;
+}
+footer ul {
+  list-style: none;
+}
+footer ul li,
+.footer-task-version {
+  color: white;
+}
+footer ul li:hover {
+  color: #e0e0e0;
+}
