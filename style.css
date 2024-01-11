@@ -5,77 +5,83 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  min-height: 100vh;
   background-color: #fff;
 }
 /*HEADER*/
 header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #e0e0e0;
+  box-shadow: 5px 5px 10px #e0e0e0;
+
+}
+header .navbar {
   display: flex;
-  padding: 10px 100px;
+  padding: .62rem;
   justify-content: space-between;
   align-items: center;
+  margin: 0 6rem;
 }
-.logo h1 {
+.navbar .logo h1 {
   font-size: 25px;
   font-family: "Ramaraja";
   color: #49a6fc;
 }
-.logo {
+ .navbar .logo {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-button {
+.navbar .logo img {
+  width: 40px;
+  height: 40px;
+}
+.navbar button {
   border-radius: 5px;
   border: none;
   padding: 8px;
   width: 90px;
   cursor: pointer;
 }
-.login {
+.navbar .login {
   background-color: #e0e0e0;
   color: #49a6fc;
 }
-.login:hover {
+.navbar .login:hover {
   background-color: #49a6fc;
   color: white;
 }
-.signup {
+.navbar .signup {
   background: #49a6fc;
   color: white;
   margin-left: 10px;
 }
-.signup:hover {
+.navbar .signup:hover {
   color: black;
 }
 
-/*SECTIONS*/
-section {
+
+/*HERO*/
+.hero-content{
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10em 0;
+  justify-content: space-between;
+  padding: 10rem 0;
+  margin: 0 6rem;
 }
-img {
-  width: 40px;
-  height: 40px;
-}
-.title {
+.hero-content .title {
   color: #000;
   font-family: "Sanchez";
   font-size: 50px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   width: 638px;
-  height: 395px;
-  flex-shrink: 0;
+  padding: 6rem 0;
 }
-.title span {
+.hero-content .title span {
   color: #49a6fc;
 }
-.buddy {
-  height: 300px;
+.hero-content .image .buddy {
+  height: 400px;
   width: auto;
 }
 /*FOOTER*/
@@ -83,10 +89,11 @@ footer {
   background-color: #49a6fc;
 }
 .footer-content{
-  padding: 1em 6em;
+  padding: 1rem 6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 16px;
 }
 
 .footer-list {
