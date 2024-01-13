@@ -1,0 +1,150 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #fff;
+}
+/*HEADER*/
+header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #e0e0e0;
+  box-shadow: 5px 5px 10px #e0e0e0;
+}
+header .navbar {
+  display: flex;
+  padding: 0.62rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 6rem;
+}
+.navbar .logo h1 {
+  font-size: 25px;
+  font-family: "Ramaraja";
+  color: #49a6fc;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .logo img {
+  width: 40px;
+  height: 40px;
+}
+.navbar button {
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  width: 90px;
+  cursor: pointer;
+}
+.navbar .logout {
+  background-color: #fff;
+  color: red;
+}
+.navbar .logout:hover {
+  background-color: #49a6fc;
+  color: white;
+}
+.user {
+  display: inline;
+  margin-left: 5px;
+  cursor: pointer;
+}
+/*CONTAINER*/
+.container {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.calendar {
+  display: flex;
+  margin-right: 25px;
+  height: 30px;
+}
+.main-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  border-bottom-color: #d9d9d9;
+  width: 80%;
+}
+.arrows {
+  height: 30px;
+  cursor: pointer;
+}
+.calName {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.task {
+  padding: 2rem 0;
+  font-size: 30px;
+}
+.task-message{
+  display: flex;
+  justify-content: center;
+}
+.task-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.task-container{
+  padding-bottom: 16em;
+}
+p {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  padding: 5rem;
+  font-weight: 700;
+  line-height: 36px;
+  width: 650px;
+  text-align: left;
+}
+.create {
+  width: 200px;
+  height: 58px;
+  border-radius: 30px;
+  border-color: #49a6fc;
+  background-color: #fff;
+  color: #49a6fc;
+  cursor: pointer;
+}
+/*FOOTER*/
+footer {
+  background-color: #49a6fc;
+}
+.footer-content {
+  padding: 1rem 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+}
+.footer-list {
+  display: flex;
+  cursor: pointer;
+  gap: 40px;
+  align-items: center;
+}
+footer ul {
+  list-style: none;
+}
+footer ul li,
+.footer-task-version {
+  color: white;
+}
+footer ul li:hover {
+  color: #e0e0e0;
+}
