@@ -37,20 +37,28 @@
     </header>
     <div class="container">
       <h1 class="monday">Monday</h1>
-      <div class="main">
-        <h2>Welcome John Doe!</h2>
-        <div class="calendar">
-          <img class="arrows" src="back.png" />
-          <input class="calName" type="date" />
-          <img class="arrows" src="forward.png" />
+      <div class="main-wrapper">
+        <div class="main">
+          <h2>Welcome John Doe!</h2>
+          <div class="calendar">
+            <img class="arrows" src="back.png" />
+            <input class="calName" type="date" />
+            <img class="arrows" src="forward.png" />
+          </div>
+          <button class="create">Create task</button>
         </div>
-        <button class="create">Create task</button>
       </div>
-      <h2 class="task">Task</h2>
-      <p>
-        No tasks for this date! Use 'Create Task' to plan something or enjoy a
-        free day. 🌟
-      </p>
+      <div class="task-wrapper">
+        <div class="task-container">
+          <h2 class="task">Task</h2>
+          <div class="task-message">
+            <p>
+              No tasks for this date! Use 'Create Task' to plan something or enjoy a
+              free day. 🌟
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <footer>
       <div class="footer-content">

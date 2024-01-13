@@ -7,6 +7,7 @@
 body {
   background-color: #fff;
 }
+/*HEADER*/
 header {
   border-bottom-style: solid;
   border-bottom-width: 2px;
@@ -54,20 +55,29 @@ header .navbar {
   margin-left: 5px;
   cursor: pointer;
 }
+/*CONTAINER*/
 .container {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.5rem;
 }
 .calendar {
   display: flex;
   margin-right: 25px;
   height: 30px;
 }
-
+.main-wrapper{
+  display: flex;
+  justify-content: center;
+}
 .main {
   display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  border-bottom-color: #d9d9d9;
+  width: 80%;
 }
 .arrows {
   height: 30px;
@@ -78,8 +88,19 @@ header .navbar {
   margin-right: 10px;
 }
 .task {
-  padding: 60px;
+  padding: 2rem 0;
   font-size: 30px;
+}
+.task-message{
+  display: flex;
+  justify-content: center;
+}
+.task-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.task-container{
+  padding-bottom: 16em;
 }
 p {
   color: rgba(0, 0, 0, 0.5);
@@ -88,7 +109,8 @@ p {
   padding: 5rem;
   font-weight: 700;
   line-height: 36px;
-  margin-bottom: 10rem;
+  width: 650px;
+  text-align: left;
 }
 .create {
   width: 200px;
@@ -99,12 +121,12 @@ p {
   color: #49a6fc;
   cursor: pointer;
 }
+/*FOOTER*/
 footer {
   background-color: #49a6fc;
-  padding-bottom: 20px;
 }
 .footer-content {
-  padding: 2rem 6rem;
+  padding: 1rem 6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
