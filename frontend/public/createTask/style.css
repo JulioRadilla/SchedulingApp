@@ -1,0 +1,148 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #fff;
+}
+/*HEADER*/
+header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #e0e0e0;
+  box-shadow: 5px 5px 10px #e0e0e0;
+}
+header .navbar {
+  display: flex;
+  padding: 0.62rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 6rem;
+}
+.navbar .logo h1 {
+  font-size: 25px;
+  font-family: "Ramaraja";
+  color: #49a6fc;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .logo img {
+  width: 40px;
+  height: 40px;
+}
+.navbar button {
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  width: 90px;
+  cursor: pointer;
+}
+.navbar .logout {
+  background-color: #fff;
+  color: red;
+}
+.navbar .logout:hover {
+  background-color: #49a6fc;
+  color: white;
+}
+.user {
+  display: inline;
+  margin-left: 5px;
+  cursor: pointer;
+}
+/*Form*/
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #49a6fc;
+}
+.main-wrapper {
+  text-align: center;
+  width: 500px;
+  height: 600px;
+  background-color: #fff;
+  margin-top: -30px;
+  border-radius: 20px;
+}
+.back {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  margin-left: 20px;
+  width: 50px;
+}
+.back-arrow {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+input {
+  width: 452px;
+  height: 50px;
+}
+.form-content {
+  padding-top: 10px;
+}
+input {
+  text-indent: 5px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid var(--Navy-100, #bdc6d4);
+  background: rgba(0, 0, 0, 0);
+}
+
+#textArea {
+  border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid var(--Navy-100, #bdc6d4);
+  background: rgba(0, 0, 0, 0);
+}
+
+.input-title {
+  padding-right: 24rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+.input-right {
+  padding-right: 26rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+.input-spacing {
+  padding-right: 20rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+.create {
+  width: 132px;
+  height: 37px;
+  border-radius: 15px;
+  background: #0680f1;
+  border-style: none;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 16rem;
+  margin-top: 25px;
+}
+.create:hover {
+  color: #0680f1;
+  background-color: #e0e0e0;
+}
+.time {
+  margin-top: 20px;
+}
+.date {
+  margin-top: 20px;
+}
+.textArea {
+  margin-top: 20px;
+}

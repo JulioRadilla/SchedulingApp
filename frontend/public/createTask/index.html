@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskForm</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="/frontend/src/target.png" />
+          <h1>TargetTracker</h1>
+        </div>
+        <div class="buttons">
+          <a href="log in/index.html"
+            ><button class="logout">Log out</button></a
+          >
+          <div class="user">
+            <svg
+              class="user"
+              xmlns="http://www.w3.org/2000/svg"
+              width="23"
+              height="23"
+              viewBox="0 0 25 25"
+              fill="none"
+            >
+              <path
+                d="M12.5002 0.833252C14.0473 0.833252 15.531 1.44783 16.625 2.5418C17.7189 3.63576 18.3335 5.11949 18.3335 6.66659C18.3335 8.21368 17.7189 9.69741 16.625 10.7914C15.531 11.8853 14.0473 12.4999 12.5002 12.4999C10.9531 12.4999 9.46934 11.8853 8.37537 10.7914C7.28141 9.69741 6.66683 8.21368 6.66683 6.66659C6.66683 5.11949 7.28141 3.63576 8.37537 2.5418C9.46934 1.44783 10.9531 0.833252 12.5002 0.833252ZM12.5002 15.4166C18.946 15.4166 24.1668 18.027 24.1668 21.2499V24.1666H0.833496V21.2499C0.833496 18.027 6.05433 15.4166 12.5002 15.4166Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="main-wrapper">
+        <div class="back">
+          <a href="../homePage/index.html">
+            <svg
+              class="back-arrow"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="18"
+              viewBox="0 0 20 18"
+              fill="none"
+            >
+              <path
+                d="M13.8498 2.24247C13.753 2.15516 13.638 2.08589 13.5115 2.03863C13.3849 1.99137 13.2493 1.96704 13.1123 1.96704C12.9752 1.96704 12.8396 1.99137 12.713 2.03863C12.5865 2.08589 12.4715 2.15516 12.3748 2.24247L5.44976 8.47497C5.37251 8.54435 5.31122 8.62677 5.2694 8.7175C5.22758 8.80823 5.20605 8.90549 5.20605 9.00372C5.20605 9.10194 5.22758 9.1992 5.2694 9.28994C5.31122 9.38067 5.37251 9.46308 5.44976 9.53247L12.3748 15.765C12.7831 16.1325 13.4414 16.1325 13.8498 15.765C14.2581 15.3975 14.2581 14.805 13.8498 14.4375L7.81643 8.99997L13.8581 3.56247C14.2581 3.20247 14.2581 2.60247 13.8498 2.24247Z"
+                fill="black"
+              />
+            </svg>
+          </a>
+          <a href="../homePage/index.html"><p class="p-back">back</p></a>
+        </div>
+        <h1 class="h1-task">Create Task</h1>
+        <div class="form-content">
+          <form action="">
+            <div class="task-title">
+              <label for="taskTitle" class="input-title">Task Title:</label>
+              <input id="taskTitle" type="text" required />
+            </div>
+            <div class="date">
+              <label for="date" class="input-right">Date:</label>
+              <input id="date" type="date" required />
+            </div>
+            <div class="time">
+              <label for="time" class="input-right">Time:</label>
+              <input id="time" type="time" required />
+            </div>
+            <div class="textArea">
+              <label for="textArea" class="input-spacing"
+                >Task Description:</label
+              >
+              <textarea
+                id="textArea"
+                rows="7"
+                cols="62"
+                maxlength="100"
+              ></textarea>
+            </div>
+            <button type="submit" class="create">CREATE</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
