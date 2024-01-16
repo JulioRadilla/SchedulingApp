@@ -42,6 +42,10 @@ header .navbar {
   width: 90px;
   cursor: pointer;
 }
+.buttons{
+  display: flex;
+  align-items: center;
+}
 .navbar .logout {
   background-color: #fff;
   color: red;
@@ -66,6 +70,11 @@ header .navbar {
   font-size: 30px;
   align-items: center;
   gap: 10px;
+}
+.calendar{
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 .main-wrapper {
   display: flex;

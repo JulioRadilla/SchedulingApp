@@ -8,7 +8,6 @@ router.get('/home', homeController.getHomePage);
 router.get('/create-task', homeController.getCreateTaskPage);
 router.get('/login', homeController.getLogInPage);
 router.get('/signup', homeController.getSignUpFormPage);
-//router.get('/signUp', homeController.signUp)
 //router.post('/logIn', homeController.logInUser)
 
 module.exports = router;

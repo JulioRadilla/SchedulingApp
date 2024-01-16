@@ -55,6 +55,10 @@ header .navbar {
   margin-left: 5px;
   cursor: pointer;
 }
+.buttons{
+  display: flex;
+  align-items: center;
+}
 /*Form*/
 .container {
   min-height: 100vh;
