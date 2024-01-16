@@ -1,5 +1,6 @@
 const path = require('path');
-const User = require('../models/userModel.js')
+const User = require('../models/usersModel.js')
+const bcrypt = require('bcrypt');
 
 module.exports = {
     getLandingPage: async (req,res) => {
@@ -26,7 +27,7 @@ module.exports = {
         res.status(500).send({message: error.message})
       }
     },
-    getLogInPage: async (req, res) => {
+    getLoginPage: async (req, res) => {
       try {
         res.sendFile(path.join(__dirname, '../../frontend/public/logIn/index.html'));
       } catch (error) {
@@ -57,11 +58,23 @@ module.exports = {
           return res.status(400).send({ message: 'Email already in use' });
         }
 
-        // Create a new user instance using the Mongoose model
-        const newUser = new User(formData);
+        //Hash password before storing in database 
+        const newUser = new User({
+          fullName: formData.fullName,
+          phoneNumber: formData.phoneNumber,
+          email: formData.email,
+          // Hash the password
+          password: await bcrypt.hash(formData.password, 10), // 10 is the number of salt rounds
+        });
+
+        // Process the form data as needed
+        console.log('Data updated after hashing password:', newUser);
 
         // Save the user to the database
-         await newUser.save();
+        await newUser.save();
+
+        // Store user information in the session
+        req.session.user = { id: newUser._id, email: newUser.email, fullName: newUser.fullName };
 
         // Redirect to the home page or send a success response
         res.redirect('/home'); 
@@ -70,7 +83,32 @@ module.exports = {
         res.status(500).send({ message: error.message})
       }
     },
-   /* loginUser: async (req,res) => {
+    loginUser: async (req,res) => {
+      try {
+        const { email, password } = req.body;
 
-    }*/
+        // Find the user by email
+        const user = await User.findOne({ email });
+    
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+    
+        // Check the password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+    
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        // Store user information in the session
+        req.session.user = { id: user._id, email: user.email, fullName: user.fullName };
+
+    
+        res.redirect('/home');
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message})
+      }
+    }
 }
