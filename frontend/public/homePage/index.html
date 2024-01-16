@@ -36,16 +36,20 @@
       </nav>
     </header>
     <div class="container">
-      <h1 class="monday">Monday</h1>
+      <h1 id="displayDay"></h1>
       <div class="main-wrapper">
         <div class="main">
           <h2>Welcome John Doe!</h2>
           <div class="calendar">
-            <img class="arrows" src="/src/back.png" />
-            <input class="calName" type="date" />
-            <img class="arrows" src="/src/forward.png" />
+            <img onclick="goBack()" class="arrows" src="../src/back.png" />
+            <div id="dateDisplay"></div>
+            <img
+              onclick="goForward()"
+              class="arrows"
+              src="../src/forward.png"
+            />
           </div>
-          <a href="/create-task"
+          <a href="../taskForm/index.html"
             ><button class="create">Create task</button></a
           >
         </div>
@@ -75,4 +79,42 @@
       </div>
     </footer>
   </body>
+  <script>
+    // Initialize with the current date
+    let currentDate = new Date();
+
+    // Function to display the current date in the format --/--/--
+    function displayDate() {
+      const formattedDate = currentDate
+        .toLocaleDateString("en-US")
+        .split("/")
+        .join("/");
+      document.getElementById("dateDisplay").innerHTML = formattedDate;
+    }
+
+    function displayDay() {
+      const day = currentDate.toLocaleDateString("en-US", {
+        weekday: "long",
+      });
+      document.getElementById("displayDay").innerHTML = day;
+    }
+
+    // Function to go back one day
+    function goBack() {
+      currentDate.setDate(currentDate.getDate() - 1);
+      displayDate();
+      displayDay();
+    }
+
+    // Function to go forward one day
+    function goForward() {
+      currentDate.setDate(currentDate.getDate() + 1);
+      displayDate();
+      displayDay();
+    }
+
+    // Initial display
+    displayDate();
+    displayDay();
+  </script>
 </html>

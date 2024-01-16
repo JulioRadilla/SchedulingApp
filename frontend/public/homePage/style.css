@@ -60,12 +60,14 @@ header .navbar {
   text-align: center;
   margin-top: 1.5rem;
 }
-.calendar {
+#dateDisplay {
   display: flex;
-  margin-right: 25px;
-  height: 30px;
+  font-weight: bold;
+  font-size: 30px;
+  align-items: center;
+  gap: 10px;
 }
-.main-wrapper{
+.main-wrapper {
   display: flex;
   justify-content: center;
 }
@@ -91,15 +93,15 @@ header .navbar {
   padding: 2rem 0;
   font-size: 30px;
 }
-.task-message{
+.task-message {
   display: flex;
   justify-content: center;
 }
-.task-wrapper{
+.task-wrapper {
   display: flex;
   justify-content: center;
 }
-.task-container{
+.task-container {
   padding-bottom: 16em;
 }
 p {
