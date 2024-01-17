@@ -1,0 +1,177 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #fff;
+}
+/*HEADER*/
+header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #e0e0e0;
+  box-shadow: 5px 5px 10px #e0e0e0;
+}
+header .navbar {
+  display: flex;
+  padding: 0.62rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 6rem;
+}
+.navbar .logo h1 {
+  font-size: 25px;
+  font-family: "Ramaraja";
+  color: #49a6fc;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .logo img {
+  width: 40px;
+  height: 40px;
+}
+.navbar button {
+  border-radius: 5px;
+  border: none;
+  padding: 8px;
+  width: 90px;
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+}
+.navbar .logout {
+  background-color: #fff;
+  color: red;
+}
+.navbar .logout:hover {
+  background-color: #49a6fc;
+  color: white;
+}
+.user {
+  display: inline;
+  margin-left: 5px;
+  cursor: pointer;
+}
+/*Form*/
+.container {
+  min-height: 100vh;
+  display: flex;
+  margin-left: 100px;
+  align-items: center;
+  background-color: #fff;
+}
+.main-wrapper {
+  text-align: center;
+  display: flex;
+  width: 500px;
+  height: 600px;
+  background-color: #fff;
+  margin-top: -30px;
+  border-radius: 20px;
+}
+.profile {
+  display: inline;
+  height: 245px;
+  background: rgb(237, 236, 236);
+  justify-content: center;
+  margin-right: 140px;
+  margin-left: 150px;
+  margin-top: 30px;
+}
+.prof-title {
+  margin-top: 20px;
+  margin-left: 70px;
+}
+.upload {
+  height: 250px;
+  width: 250px;
+  cursor: pointer;
+}
+.p-upload {
+  cursor: pointer;
+  color: #49a6fc;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+input {
+  width: 500px;
+  height: 50px;
+}
+.form-content {
+  padding-top: 10px;
+}
+input {
+  text-indent: 5px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid var(--Navy-100, #bdc6d4);
+  background: rgba(0, 0, 0, 0);
+}
+
+.input-title {
+  padding-right: 26rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+.input-right {
+  padding-right: 24rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+.input-pass {
+  padding-right: 26.5rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+.input-email {
+  padding-right: 24rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.input-spacing {
+  padding-right: 20rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+.create {
+  width: 500px;
+  height: 56px;
+  border-radius: 15px;
+  background: #49a6fc;
+  color: white;
+  border-style: none;
+  margin-top: 30px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.create:hover {
+  color: #0680f1;
+  background-color: #e0e0e0;
+}
+.input-e {
+  margin-top: 20px;
+}
+.number {
+  margin-top: 20px;
+}
+.delete {
+  margin-top: 20px;
+  color: red;
+  cursor: pointer;
+}
+.delete:hover {
+  color: #818181;
+}
+.p-upload:hover {
+  color: #818181;
+}
