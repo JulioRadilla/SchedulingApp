@@ -13,6 +13,24 @@ const app = express();
 //Enviroment Variables
 require('dotenv').config({ path: './.env' });
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
+// Optionally set the views directory to 'views' folder in the root.
+// Adjust this line if your project structure is different.
+// Can still render ejs file in views folder without this line
+app.set('views', path.join(__dirname, 'views'));
+
+// Set up session management
+app.use(session({
+    // Secret key for session cookie encryption
+    secret: 'keyboard cat',
+    // Avoid unnecessary session saves
+    resave: false,
+    // Avoid saving uninitialized sessions
+    saveUninitialized: false
+}))
+
 //Middleware
 //Allow server to accept json as a body of request
 app.use(express.json());
@@ -24,15 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 //nocache middleware to disable caching for all routes
 // This is crucial when using sessions for user authentication to prevent security risks
 app.use(nocache());
-// Set up session management
-app.use(session({
-    // Secret key for session cookie encryption
-    secret: 'keyboard cat',
-    // Avoid unnecessary session saves
-    resave: false,
-    // Avoid saving uninitialized sessions
-    saveUninitialized: false
-}))
+
 
 //Routes
 app.use('/', homeRoutes);

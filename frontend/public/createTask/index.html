@@ -57,21 +57,21 @@
         </div>
         <h1 class="h1-task">Create Task</h1>
         <div class="form-content">
-          <form action="">
+          <form action="/create-task" method="POST">
             <div class="task-title">
               <label for="taskTitle" class="input-title">Task Title:</label>
-              <input id="taskTitle" type="text" required />
+              <input id="taskTitle" type="text" name="taskTitle" required />
             </div>
             <div class="date">
               <label for="date" class="input-right">Date:</label>
-              <input id="date" type="date" required />
+              <input id="date" type="date"  name="date" required />
             </div>
             <div class="time">
               <label for="time" class="input-right">Time:</label>
-              <input id="time" type="time" required />
+              <input id="time" type="time" name="time" required />
             </div>
             <div class="textArea">
-              <label for="textArea" class="input-spacing"
+              <label for="textArea" class="input-spacing" 
                 >Task Description:</label
               >
               <textarea
@@ -79,6 +79,7 @@
                 rows="7"
                 cols="62"
                 maxlength="100"
+                name="textArea"
               ></textarea>
             </div>
             <button type="submit" class="create">CREATE</button>
@@ -86,5 +87,29 @@
         </div>
       </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Get the date input element
+          const dateInput = document.getElementById('date');
+      
+          // Add an event listener to the form to handle date formatting before submission
+          document.querySelector('form').addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+      
+            // Get the selected date value
+            const selectedDate = dateInput.value;
+      
+            // Convert the date to ISO 8601 format
+            const isoFormattedDate = new Date(selectedDate).toISOString().split('T')[0];
+      
+            // Update the date input value with the formatted date
+            dateInput.value = isoFormattedDate;
+      
+            // Now, you can proceed with the form submission
+            this.submit();
+          });
+        });
+      </script>
   </body>
 </html>

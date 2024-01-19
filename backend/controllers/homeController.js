@@ -1,6 +1,8 @@
 const path = require('path');
-const User = require('../models/usersModel.js')
+const User = require('../models/usersModel.js');
+const Task = require('../models/TaskModel.js');
 const bcrypt = require('bcrypt');
+const { format, parseISO } = require('date-fns')
 
 module.exports = {
     getLandingPage: async (req,res) => {
@@ -13,7 +15,27 @@ module.exports = {
     },
     getHomePage: async (req, res) => {
       try {
-        res.sendFile(path.join(__dirname, '../../frontend/public/homePage/index.html'));
+        // Gets user information in req.user that is created once logged in or if they sign up
+        const userId = req.session.user.id;
+
+        // Fetch tasks for the logged-in user from the database
+        const userTasks = await Task.find({ userId: userId });
+
+        // Function to get the current date in the format "MM/DD/YYYY"
+        const getCurrentFormattedDate = () => {
+          const currentDate = new Date();
+          const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+          const day = String(currentDate.getDate()).padStart(2, '0');
+          const year = currentDate.getFullYear();
+
+          // Format the date as "MM/DD/YYYY"
+          return `${month}/${day}/${year}`;
+        };
+
+        // Ensure that formattedDate is a string
+        const formattedDate = getCurrentFormattedDate();
+
+        res.render('home', { tasks: userTasks, formattedDate})
       } catch (error) {
         console.log(error.message);
         res.status(500).send({message: error.message})
@@ -45,6 +67,7 @@ module.exports = {
     },
     signUpUser: async (req,res) =>{
       try {
+        //This destructure the body
         const formData = req.body;
 
         // Process the form data as needed
@@ -102,10 +125,48 @@ module.exports = {
         }
 
         // Store user information in the session
-        req.session.user = { id: user._id, email: user.email, fullName: user.fullName };
-
+        //req.session.user = { id: user._id, email: user.email, fullName: user.fullName };
+        const userInfo = { id: user._id, email: user.email, fullName: user.fullName };;
+        req.session.user = userInfo;
+        req.user = userInfo;
+        
+        console.log(req.session.user);
     
         res.redirect('/home');
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message})
+      }
+    },
+    createTask: async (req,res) => {
+      try {
+        // Another approach on how to destructure the body
+        const { taskTitle, date, time, textArea } = req.body;
+        console.log(req.body);
+        
+        // Gets user information in req.user that is created once logged in or if they sign up
+        const userId = req.session.user.id;
+
+        // Parse ISO 8601 formatted date and format it to MM/DD/YYYY
+        const formattedDate = format(parseISO(date), 'MM/dd/yyyy');
+        
+        //Save the task data to the Task model in the database
+        const task = new Task({
+          taskTitle: taskTitle,
+          date: formattedDate,
+          time: time,
+          description: textArea,
+          userId: userId,
+        });
+
+        console.log(task)
+
+        // Save the task to the database
+        await task.save();
+
+        // Redirect to the home page after successful task creation
+        res.redirect('/home');
+        
       } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message})
