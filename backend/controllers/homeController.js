@@ -23,8 +23,22 @@ module.exports = {
         // Fetch tasks for the logged-in user from the database
         const userTasks = await Task.find({ userId: userId });
 
+        // Function to get the current date in the format "MM/DD/YYYY"
+        const getCurrentFormattedDate = () => {
+          const currentDate = new Date();
+          const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+          const day = String(currentDate.getDate()).padStart(2, '0');
+          const year = currentDate.getFullYear();
 
-        res.render('home', { tasks: userTasks, fullName: fullName})
+          // Format the date as "MM/DD/YYYY"
+          return `${month}/${day}/${year}`;
+        };
+
+        // Ensure that formattedDate is a string
+        const formattedDate = getCurrentFormattedDate();
+
+
+        res.render('home', { tasks: userTasks, formattedDate: formattedDate, fullName: fullName})
       } catch (error) {
         console.log(error.message);
         res.status(500).send({message: error.message})
@@ -49,6 +63,14 @@ module.exports = {
     getSignUpFormPage: async (req, res) => {
       try {
         res.sendFile(path.join(__dirname, '../../frontend/public/signUpForm/index.html'));
+      } catch (error) {
+        console.log(error.message);
+        res.status(500).send({message: error.message})
+      }
+    },
+    getProfilePage: async (req,res) => {
+      try {
+        res.sendFile(path.join(__dirname, '../../frontend/public/profile/index.html'));
       } catch (error) {
         console.log(error.message);
         res.status(500).send({message: error.message})
@@ -174,5 +196,12 @@ module.exports = {
           console.log(error.message);
           res.status(500).json({ message: error.message });
       }
+    },
+    logoutUser: async (req,res) => {
+       // Destroy session or clear token
+      req.session.destroy();
+
+      // Redirect to the login page
+      res.redirect('/')
     }
 }
