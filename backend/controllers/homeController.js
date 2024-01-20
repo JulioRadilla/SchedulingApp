@@ -18,24 +18,13 @@ module.exports = {
         // Gets user information in req.user that is created once logged in or if they sign up
         const userId = req.session.user.id;
 
+        const fullName = req.session.user.fullName;
+
         // Fetch tasks for the logged-in user from the database
         const userTasks = await Task.find({ userId: userId });
 
-        // Function to get the current date in the format "MM/DD/YYYY"
-        const getCurrentFormattedDate = () => {
-          const currentDate = new Date();
-          const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-          const day = String(currentDate.getDate()).padStart(2, '0');
-          const year = currentDate.getFullYear();
 
-          // Format the date as "MM/DD/YYYY"
-          return `${month}/${day}/${year}`;
-        };
-
-        // Ensure that formattedDate is a string
-        const formattedDate = getCurrentFormattedDate();
-
-        res.render('home', { tasks: userTasks, formattedDate})
+        res.render('home', { tasks: userTasks, fullName: fullName})
       } catch (error) {
         console.log(error.message);
         res.status(500).send({message: error.message})
@@ -170,6 +159,20 @@ module.exports = {
       } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message})
+      }
+    },
+    getTaskByDate: async (req,res) =>{
+      try {
+        const userId = req.session.user.id;
+        const date = req.query.date;
+
+        // Fetch tasks for the logged-in user and the specified date
+        const tasks = await Task.find({ userId: userId, date: date });
+
+        res.json({ tasks: tasks });
+      } catch (error) {
+          console.log(error.message);
+          res.status(500).json({ message: error.message });
       }
     }
 }

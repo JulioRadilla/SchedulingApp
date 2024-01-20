@@ -10,6 +10,8 @@ router.get('/home', isAuthenticated, homeController.getHomePage);
 router.get('/create-task', isAuthenticated, homeController.getCreateTaskPage);
 router.get('/login', homeController.getLoginPage);
 router.get('/signup', homeController.getSignUpFormPage);
+// Fetch the tasks by date based on what the date the user selects
+router.get('/fetch-tasks', homeController.getTaskByDate)
 router.post('/login', homeController.loginUser)
 router.post('/signUpForm', homeController.signUpUser);
 router.post('/create-task', homeController.createTask)

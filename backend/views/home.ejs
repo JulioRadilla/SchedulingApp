@@ -37,7 +37,7 @@
     <h1 id="displayDay"></h1>
     <div class="main-wrapper">
       <div class="main">
-        <h2>Welcome John Doe!</h2>
+        <h2>Welcome <%=fullName%></h2>
         <div class="calendar">
           <img onclick="goBack()" class="arrows" src="/src/back.png" />
           <div id="dateDisplay"><%= formattedDate %></div>
@@ -55,7 +55,7 @@
     <div class="task-wrapper">
       <div class="task-container">
         <h2 class="task">Task</h2>
-        <div class="task-message">
+        <div  id="task-message" class="task-message">
             <% const matchingTasks = tasks.filter(task => task.date === formattedDate); %>
             <% if (matchingTasks.length > 0) { %>
                 <!-- Iterate through matching tasks and display them -->
@@ -126,9 +126,34 @@
         updateTasks();
     }
 
+    async function fetchTasksByDate(date) {
+      const response = await fetch(`/fetch-tasks?date=${date}`);
+      const data = await response.json();
+      return data.tasks;
+    }
+
     // Function to update tasks based on the selected date
-    function updateTasks() {
-        // Call the backend or perform any logic to update tasks based on the selected date
+    async function updateTasks() {
+      try {
+        const tasks = await fetchTasksByDate(formattedDate);
+
+        const tasksMessage = document.getElementById("task-message");
+        tasksMessage.innerHTML = '';
+
+        if (tasks.length > 0) {
+            tasks.forEach(task => {
+                const taskElement = document.createElement("p");
+                taskElement.innerHTML = `Task: ${task.taskTitle}<br>Date: ${task.date}<br>Time: ${task.time}<br>Description: ${task.description}`;
+                tasksMessage.appendChild(taskElement);
+            });
+        } else {
+            const noTasksMessage = document.createElement("p");
+            noTasksMessage.innerHTML = "No tasks for this date! Use 'Create Task' to plan something or enjoy a free day. 🌟";
+            tasksMessage.appendChild(noTasksMessage);
+        }
+      } catch (error) {
+          console.error('Error fetching tasks:', error);
+      }
     }
 
   </script>
