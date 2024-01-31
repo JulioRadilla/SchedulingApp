@@ -8,15 +8,22 @@ const { isAuthenticated } = require('../middleware/authorization.js');
 router.get('/', homeController.getLandingPage);
 router.get('/home', isAuthenticated, homeController.getHomePage);
 router.get('/create-task', isAuthenticated, homeController.getCreateTaskPage);
+router.get('/profile', isAuthenticated, homeController.getProfilePage);
 router.get('/login', homeController.getLoginPage);
 router.get('/signup', homeController.getSignUpFormPage);
-router.get('/profile', homeController.getProfilePage)
 // Fetch the tasks by date based on what the date the user selects
 router.get('/fetch-tasks', homeController.getTaskByDate)
 router.post('/logout', homeController.logoutUser);
 router.post('/login', homeController.loginUser);
 router.post('/signUpForm', homeController.signUpUser);
-router.post('/create-task', homeController.createTask)
+router.post('/create-task', homeController.createTask);
+router.put('/updateUserProfile', homeController.updateUserProfile);
 
+/*
+Create- POST
+Read- GET
+Update - PUT 
+Delete - DELETE
+*/
 
 module.exports = router;

@@ -1,16 +1,18 @@
 const path = require('path');
+//Models inside the mongoDB database
 const User = require('../models/usersModel.js');
 const Task = require('../models/TaskModel.js');
 const bcrypt = require('bcrypt');
-const { format, parseISO } = require('date-fns')
+const { format , parseISO } = require('date-fns')
 
-module.exports = {
+
+module.exports =  {
     getLandingPage: async (req,res) => {
         try {
-            res.sendFile(path.join(__dirname, '../../frontend/public/index.html'))
+          res.sendFile(path.join(__dirname, '../../frontend/public/index.html'))
         } catch (error) {
-            console.log(error.message);
-            res.status(500).send({message: error.message})
+          console.log(error.message);
+          res.status(500).send({message: error.message})
         }
     },
     getHomePage: async (req, res) => {
@@ -18,10 +20,12 @@ module.exports = {
         // Gets user information in req.user that is created once logged in or if they sign up
         const userId = req.session.user.id;
 
-        const fullName = req.session.user.fullName;
-
         // Fetch tasks for the logged-in user from the database
         const userTasks = await Task.find({ userId: userId });
+        console.log(userId)
+        const user = await User.findOne({ _id: userId });
+        console.log(user)
+        const fullName = user.fullName;
 
         // Function to get the current date in the format "MM/DD/YYYY"
         const getCurrentFormattedDate = () => {
@@ -70,7 +74,9 @@ module.exports = {
     },
     getProfilePage: async (req,res) => {
       try {
-        res.sendFile(path.join(__dirname, '../../frontend/public/profile/index.html'));
+        const successMessage = req.flash('success');
+        const errorMessage = req.flash('error');
+        res.render('profile', { successMessage, errorMessage })
       } catch (error) {
         console.log(error.message);
         res.status(500).send({message: error.message})
@@ -84,12 +90,12 @@ module.exports = {
         // Process the form data as needed
         console.log('Received form data:', formData);
 
-         // Check if a user with the same email already exists
+        // Check if a user with the same email already exists
         const existingUser = await User.findOne({ email: formData.email });
 
         if (existingUser) {
           // Handle duplicate email entry
-          return res.status(400).send({ message: 'Email already in use' });
+          res.status(400).send({ message: 'Email already in use' });
         }
 
         //Hash password before storing in database 
@@ -125,19 +131,18 @@ module.exports = {
         const user = await User.findOne({ email });
     
         if (!user) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+          res.status(401).json({ message: 'Invalid email or password' });
         }
     
         // Check the password
         const isPasswordValid = await bcrypt.compare(password, user.password);
     
         if (!isPasswordValid) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+          res.status(401).json({ message: 'Invalid email or password' });
         }
 
         // Store user information in the session
-        //req.session.user = { id: user._id, email: user.email, fullName: user.fullName };
-        const userInfo = { id: user._id, email: user.email, fullName: user.fullName };;
+        const userInfo = { id: user._id, email: user.email, fullName: user.fullName };
         req.session.user = userInfo;
         req.user = userInfo;
         
@@ -193,8 +198,8 @@ module.exports = {
 
         res.json({ tasks: tasks });
       } catch (error) {
-          console.log(error.message);
-          res.status(500).json({ message: error.message });
+        console.log(error.message);
+        res.status(500).json({ message: error.message });
       }
     },
     logoutUser: async (req,res) => {
@@ -203,5 +208,52 @@ module.exports = {
 
       // Redirect to the login page
       res.redirect('/')
-    }
+    },
+    updateUserProfile: async (req, res) => {
+      try {
+        const { fullName, phoneNumber, email, password } = req.body;
+        console.log(req.body);
+        // Retrieve user ID from the backend, assuming it's available
+        const userId = req.session.user.id; // Adjust this based on your authentication setup
+
+        // Find the user by ID
+        const user = await User.findById(userId);
+
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Update user details
+        user.fullName = fullName;
+        user.phoneNumber = phoneNumber;
+        user.email = email;
+        user.password = await bcrypt.hash(password,10);
+
+        // Save the updated user
+        await user.save();
+
+        console.log(user)
+
+        //These messages are temporarily stored in the session
+        // Set a flash message
+        req.flash('success', 'User profile updated successfully');
+        // Inside updateUserProfile controller
+        console.log('Flash success message:', req.flash('success'));
+
+        //res.status(200).json({ success: 'User profile updated successfully' });
+        res.redirect('/profile')
+      } catch (error) {
+        console.error('Error updating user profile:', error);
+
+        // Set an error flash message
+        req.flash('error', `Failed to update user profile: ${error.message}`);
+
+        console.log('Flash error message:', req.flash('error'));   
+
+        res.status(500).json({ error: `Failed to update user profile: ${error.message}` });
+      }
+  },
 }
+
+
+

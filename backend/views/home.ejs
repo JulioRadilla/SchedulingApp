@@ -61,7 +61,9 @@
     <div class="task-wrapper">
       <div class="task-container">
         <h2 class="task">Task</h2>
+        <!-- The dynamically updated task messages will be displayed inside this div -->
         <div  id="task-message" class="task-message">
+          <!--Shows task for current day since its not fetching unless user clicks forward or backword icon-->
             <% const matchingTasks = tasks.filter(task => task.date === formattedDate); %>
             <% if (matchingTasks.length > 0) { %>
                 <!-- Iterate through matching tasks and display them -->
@@ -96,7 +98,10 @@
   <script>
      // Initialize with the current date
     let currentDate = new Date();
+    //MM/DD/YYYY
     let formattedDate = currentDate.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: 'numeric' }).split("/").join("/");
+
+    updateTasks()
 
     // Function to display the current date in the format --/--/--
     function displayDate() {
@@ -145,6 +150,8 @@
 
         const tasksMessage = document.getElementById("task-message");
         tasksMessage.innerHTML = '';
+
+        displayDay()
 
         if (tasks.length > 0) {
             tasks.forEach(task => {
