@@ -213,21 +213,25 @@ module.exports =  {
       try {
         const { fullName, phoneNumber, email, password } = req.body;
         console.log(req.body);
-        // Retrieve user ID from the backend, assuming it's available
-        const userId = req.session.user.id; // Adjust this based on your authentication setup
+        console.log('Received PUT request to /updateUserProfile:', req.body);
+        //Retrieves users id in session 
+        const id = req.session.user.id;
 
         // Find the user by ID
-        const user = await User.findById(userId);
+        const user = await User.findByIdAndUpdate(
+          id,
+          {
+             // Update user details
+            fullName : fullName,
+            phoneNumber : phoneNumber,
+            email : email,
+            password : await bcrypt.hash(password,10),
+          },
+        );
 
         if (!user) {
           return res.status(404).json({ error: 'User not found' });
         }
-
-        // Update user details
-        user.fullName = fullName;
-        user.phoneNumber = phoneNumber;
-        user.email = email;
-        user.password = await bcrypt.hash(password,10);
 
         // Save the updated user
         await user.save();
@@ -240,8 +244,8 @@ module.exports =  {
         // Inside updateUserProfile controller
         console.log('Flash success message:', req.flash('success'));
 
-        //res.status(200).json({ success: 'User profile updated successfully' });
-        res.redirect('/profile')
+        //res.redirect('/profile')
+        res.status(200).json({ success: true });
       } catch (error) {
         console.error('Error updating user profile:', error);
 

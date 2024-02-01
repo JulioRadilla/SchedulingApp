@@ -50,7 +50,7 @@
           <p class="p-upload">Upload Picture</p>
         </div>
         <div class="form-content">
-            <form id="updateProfileForm" action="/updateUserProfile"  method="PUT" onsubmit="updateProfile(event);">
+            <form id="updateProfileForm" onsubmit="updateProfile(event);">
                 <div class="task-title">
                     <label for="name" class="input-title">Full Name:</label>
                     <input id="name" type="text" name="fullName"/>
@@ -77,8 +77,6 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
     <script>
       function updateProfile(event) {
           event.preventDefault(); // Prevent the default form submission
@@ -89,47 +87,30 @@
             email: document.getElementById('email').value,
             password: document.getElementById('pass').value,
           };
+        
           console.log(data); // Add this line to log the FormData object
-          const url = 'http://localhost:3000/updateUserProfile';
 
-          axios.put(url, JSON.stringify(data), {
+          fetch('http://localhost:3000/updateUserProfile', {
+            method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify(data),
           })
           .then(response => {
-            console.log(response.data); // Handle success response
-             // Check if the response has a 'Location' header
-             console.log(response.headers);
-             console.log(response.headers.location);
-            if (response.headers && response.headers.location) {
-              // Redirect to the specified location
-              window.location.href = response.headers.location;
+            console.log('Response from server:', response);
+            if (response.ok) {
+              // Check if the response indicates success (status code 200-299)
+              // You can customize this based on your server's response logic
+              window.location.href = '/profile'; // Redirect to /profile
             } else {
-              // Handle other responses
-              console.log(response.data);
+              // Handle other responses, e.g., show an error message
+              console.error('Error updating profile:', response.statusText);
             }
-            // Handle success response
-            // Directly access the flash messages
-            /*const successMessage = response.data.success;
-            const errorMessage = response.data.error;*/
-
-            /*if (successMessage) {
-                document.getElementById('successText').innerText = successMessage;
-                document.getElementById('successMessage').style.display = 'block';
-            } else if (errorMessage) {
-                document.getElementById('errorText').innerText = 'Error updating profile: ' + errorMessage;
-                document.getElementById('errorMessage').style.display = 'block';
-            }*/
-            /*
-            document.getElementById('successText').innerText = response.data.success;
-            document.getElementById('successMessage').style.display = 'block';*/
           })
           .catch(error => {
-            console.error('Error updating profile:', error);
-            /*// Handle error, display error messages, etc.
-            document.getElementById('errorText').innerText = 'Error updating profile: ' + error.response.data.error;
-            document.getElementById('errorMessage').style.display = 'block';*/
+              console.error(error); // Handle error response
+              // Handle other error scenarios
           });
       }
 

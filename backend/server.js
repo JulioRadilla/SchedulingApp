@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-//const nocache = require('nocache');
+const nocache = require('nocache');
 //It adds the session property to the Express request object (req).
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, '..' ,'frontend', 'public')));
 app.use(express.urlencoded({ extended: true }));
 //nocache middleware to disable caching for all routes
 // This is crucial when using sessions for user authentication to prevent security risks
-//app.use(nocache());
+app.use(nocache());
 // Flash messages middleware for displaying temporary messages to users after redirects.
 app.use(flash());
 
