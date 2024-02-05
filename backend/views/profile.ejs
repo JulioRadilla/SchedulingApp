@@ -36,43 +36,44 @@
       </nav>
     </header>
     <h1 class="prof-title">Profile</h1>
-    <div class="container">
-      <div class="backendMessages">
-        <% if (successMessage != ''){ %>
-          <p><%= successMessage %></p>
-        <% } else if (errorMessage != ''){ %>
-          <p><%= errorMessage %></p>
-        <% } %>
+    <div class="backendMessages">
+      <!-- Add the following hidden div for displaying the success message after redirect -->
+      <div id="successMessage" style="display: none;">
+        <p style="color: green;">Profile updated successfully!</p>
       </div>
+    
+      <!-- Add the following hidden div for displaying the error message after redirect -->
+      <div id="errorMessage" style="display: none;">
+        <p style="color: red;">Failed to update profile. Email already in use.</p>
+      </div>
+    </div>
+    <div class="container">
       <div class="main-wrapper">
         <div class="profile">
           <img class="upload" src="../src/upload.png" />
           <p class="p-upload">Upload Picture</p>
         </div>
         <div class="form-content">
-            <form id="updateProfileForm" onsubmit="updateProfile(event);">
-                <div class="task-title">
-                    <label for="name" class="input-title">Full Name:</label>
-                    <input id="name" type="text" name="fullName"/>
-                </div>
-                <div class="number">
-                    <label for="number" class="input-right">Phone Number:</label>
-                    <input id="number" type="tel" name="phoneNumber"/>
-                </div>
-                <div>
-                  <p>To confirm these changes, enter your current Gmail and Password.</p>
-                </div>
-                <div class="input-e">
-                    <label for="email" class="input-email">Email Address:</label>
-                    <input id="email" type="email" name="email"/>
-                </div>
-                <div class="input-e">
-                    <label for="pass" class="input-pass">Password:</label>
-                    <input id="pass" type="password" name="password"/>
-                </div>
-                <button type="submit" class="create">Save Update</button>
-                <p class="delete">Delete Account</p>
-            </form>
+          <form id="updateProfileForm" onsubmit="updateProfile(event);">
+            <div class="task-title">
+              <label for="name" class="input-title">Full Name:</label>
+              <input id="name" type="text" name="fullName" />
+            </div>
+            <div class="number">
+              <label for="number" class="input-right">Phone Number:</label>
+              <input id="number" type="tel" name="phoneNumber" />
+            </div>
+            <div class="input-e">
+              <label for="email" class="input-email">Email Address:</label>
+              <input id="email" type="email" name="email" />
+            </div>
+            <div class="input-e">
+              <label for="pass" class="input-pass">Password:</label>
+              <input id="pass" type="password" name="password" />
+            </div>
+            <button type="submit" class="create">Save Update</button>
+            <p class="delete">Delete Account</p>
+          </form>          
         </div>
       </div>
     </div>
@@ -100,17 +101,15 @@
           .then(response => {
             console.log('Response from server:', response);
             if (response.ok) {
-              // Check if the response indicates success (status code 200-299)
-              // You can customize this based on your server's response logic
-              window.location.href = '/profile'; // Redirect to /profile
+              document.getElementById('successMessage').style.display = 'block';
+              document.getElementById('updateProfileForm').reset();
             } else {
-              // Handle other responses, e.g., show an error message
-              console.error('Error updating profile:', response.statusText);
+              document.getElementById('errorMessage').style.display = 'block';
+              document.getElementById('updateProfileForm').reset();
             }
           })
           .catch(error => {
-              console.error(error); // Handle error response
-              // Handle other error scenarios
+            console.error('error:' + error);
           });
       }
 

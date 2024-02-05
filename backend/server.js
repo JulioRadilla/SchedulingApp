@@ -6,7 +6,6 @@ const path = require('path');
 const nocache = require('nocache');
 //It adds the session property to the Express request object (req).
 const session = require('express-session');
-const flash = require('connect-flash');
 //Routes
 const homeRoutes = require('./routes/home.js');
 
@@ -37,15 +36,6 @@ app.use(express.urlencoded({ extended: true }));
 //nocache middleware to disable caching for all routes
 // This is crucial when using sessions for user authentication to prevent security risks
 app.use(nocache());
-// Flash messages middleware for displaying temporary messages to users after redirects.
-app.use(flash());
-
-//Middleware to log flash messages
-/*app.use((req, res, next) => {
-    res.locals.message = req.flash()
-    console.log('Middleware Flash Messages:', res.locals.message);
-    next();
-});*/
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');

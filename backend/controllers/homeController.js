@@ -21,8 +21,8 @@ module.exports =  {
         const userId = req.session.user.id;
 
         // Fetch tasks for the logged-in user from the database
-        const userTasks = await Task.find({ userId: userId });
-        console.log(userId)
+        const userTasks = await Task.find({ _id: userId });
+        console.log(userId);
         const user = await User.findOne({ _id: userId });
         console.log(user)
         const fullName = user.fullName;
@@ -42,7 +42,7 @@ module.exports =  {
         const formattedDate = getCurrentFormattedDate();
 
 
-        res.render('home', { tasks: userTasks, formattedDate: formattedDate, fullName: fullName})
+        res.render('home', { tasks: userTasks, formattedDate: formattedDate, fullName: fullName});
       } catch (error) {
         console.log(error.message);
         res.status(500).send({message: error.message})
@@ -74,9 +74,7 @@ module.exports =  {
     },
     getProfilePage: async (req,res) => {
       try {
-        const successMessage = req.flash('success');
-        const errorMessage = req.flash('error');
-        res.render('profile', { successMessage, errorMessage })
+        res.render('profile')
       } catch (error) {
         console.log(error.message);
         res.status(500).send({message: error.message})
@@ -146,7 +144,8 @@ module.exports =  {
         req.session.user = userInfo;
         req.user = userInfo;
         
-        console.log(req.session.user);
+        console.log( req )
+        console.log( req.session );
     
         res.redirect('/home');
       } catch (error) {
@@ -203,7 +202,7 @@ module.exports =  {
       }
     },
     logoutUser: async (req,res) => {
-       // Destroy session or clear token
+       // Destroy session 
       req.session.destroy();
 
       // Redirect to the login page
@@ -215,19 +214,26 @@ module.exports =  {
         console.log(req.body);
         console.log('Received PUT request to /updateUserProfile:', req.body);
         //Retrieves users id in session 
-        const id = req.session.user.id;
+        const userId = req.session.user.id;
+
+        // Check if the provided email is already in use in the database 
+        const existingUser = await User.findOne({ email: email.toLowerCase() });
+
+        // Check for a conflicting email address in the database.
+        // Return a 409 status if the email is already in use by another user.
+        if (existingUser && existingUser.id !== userId) {
+          return res.status(409).json({ error: 'Email address is already in use' });
+        }
+
+        // Prepare the update object with non-empty values
+        const updatedObject = {};
+        if (fullName.trim() !== '') updatedObject.fullName = fullName;
+        if (phoneNumber.trim() !== '') updatedObject.phoneNumber = phoneNumber;
+        if (email.trim() !== '') updatedObject.email = email;
+        if (password.trim() !== '') updatedObject.password = await bcrypt.hash(password, 10);
 
         // Find the user by ID
-        const user = await User.findByIdAndUpdate(
-          id,
-          {
-             // Update user details
-            fullName : fullName,
-            phoneNumber : phoneNumber,
-            email : email,
-            password : await bcrypt.hash(password,10),
-          },
-        );
+        const user = await User.findByIdAndUpdate(userId, updatedObject);
 
         if (!user) {
           return res.status(404).json({ error: 'User not found' });
@@ -238,21 +244,14 @@ module.exports =  {
 
         console.log(user)
 
-        //These messages are temporarily stored in the session
-        // Set a flash message
-        req.flash('success', 'User profile updated successfully');
-        // Inside updateUserProfile controller
-        console.log('Flash success message:', req.flash('success'));
 
-        //res.redirect('/profile')
-        res.status(200).json({ success: true });
+        //I was getting error trying to do redirect because I was trying to redirect to same page and not to another page
+        //Redirect should be used to access a different page and not the same page you are in 
+
+        res.render('profile')
+        //res.status(200).json({ success: true });
       } catch (error) {
         console.error('Error updating user profile:', error);
-
-        // Set an error flash message
-        req.flash('error', `Failed to update user profile: ${error.message}`);
-
-        console.log('Flash error message:', req.flash('error'));   
 
         res.status(500).json({ error: `Failed to update user profile: ${error.message}` });
       }
