@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #fff;
+}
+/*HEADER*/
+header {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #e0e0e0;
+  box-shadow: 5px 5px 10px #e0e0e0;
+}
+header .navbar {
+  display: flex;
+  padding: 0.62rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 6rem;
+}
+.navbar .logo h1 {
+  font-size: 25px;
+  font-family: "Ramaraja";
+  color: #49a6fc;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .logo img {
+  width: 40px;
+  height: 40px;
+}
+.error-message {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: red;
+}
+.error-words {
+  text-align: center;
+  padding-top: 100px;
+}
+.error-h1 {
+  font-size: 60px;
+}
+.error-h2 {
+  font-size: 35px;
+}
+.error-p {
+  font-size: 20px;
+}

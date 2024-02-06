@@ -73,7 +73,7 @@ header .navbar {
   width: 500px;
   height: 600px;
   background-color: #fff;
-  margin-top: -30px;
+  margin-top: -50px;
   border-radius: 20px;
 }
 .profile {
@@ -173,5 +173,44 @@ input {
   color: #818181;
 }
 .p-upload:hover {
+  color: #818181;
+}
+.backendMessages {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+#successMessage {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: -20px;
+}
+#errorMessage {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: -20px;
+}
+.prof-title {
+  text-align: center;
+  margin-left: 25px;
+  padding-bottom: 10px;
+}
+.back {
+  display: flex;
+  margin: 30px;
+  margin-left: 50px;
+  align-items: center;
+}
+.back-arrow {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+.p-back {
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+.p-back:hover {
   color: #818181;
 }
