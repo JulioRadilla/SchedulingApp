@@ -93,7 +93,7 @@ module.exports =  {
 
         if (existingUser) {
           // Handle duplicate email entry
-          res.status(400).send({ message: 'Email already in use' });
+         return  res.status(400).send({ message: 'Email already in use' });
         }
 
         //Hash password before storing in database 
@@ -115,7 +115,7 @@ module.exports =  {
         req.session.user = { id: newUser._id, email: newUser.email, fullName: newUser.fullName };
 
         // Redirect to the home page or send a success response
-        res.redirect('/home'); 
+        return res.redirect('/home'); 
       } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message})
@@ -129,14 +129,14 @@ module.exports =  {
         const user = await User.findOne({ email });
     
         if (!user) {
-          res.status(401).json({ message: 'Invalid email or password' });
+          return res.status(404).json({ message: 'Invalid email or password' });
         }
     
         // Check the password
         const isPasswordValid = await bcrypt.compare(password, user.password);
     
         if (!isPasswordValid) {
-          res.status(401).json({ message: 'Invalid email or password' });
+          return res.status(401).json({ message: 'Invalid email or password' });
         }
 
         // Store user information in the session
@@ -146,8 +146,8 @@ module.exports =  {
         
         console.log( req )
         console.log( req.session );
-    
-        res.redirect('/home');
+        // Sends a successful authentication response to redirect the client to '/home'.
+        res.status(200).json({message: 'Authentication successful'});
       } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message})
