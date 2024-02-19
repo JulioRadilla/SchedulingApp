@@ -159,8 +159,19 @@ module.exports =  {
         const { taskTitle, date, time, textArea } = req.body;
         console.log(req.body);
         
+        // Convert the time format
+        const formattedTime = formatTimeWithAMPM(time);
+
         // Gets user information in req.user that is created once logged in or if they sign up
         const userId = req.session.user.id;
+
+        // Function to format time with AM/PM
+        function formatTimeWithAMPM(time) {
+          const [hours, minutes] = time.split(':');
+          const formattedHours = parseInt(hours, 10) % 12 || 12;
+          const ampm = parseInt(hours, 10) < 12 ? 'AM' : 'PM';
+          return `${formattedHours}:${minutes} ${ampm}`;
+        }
 
         // Parse ISO 8601 formatted date and format it to MM/DD/YYYY
         const formattedDate = format(parseISO(date), 'MM/dd/yyyy');
@@ -169,7 +180,7 @@ module.exports =  {
         const task = new Task({
           taskTitle: taskTitle,
           date: formattedDate,
-          time: time,
+          time: formattedTime,
           description: textArea,
           userId: userId,
         });
