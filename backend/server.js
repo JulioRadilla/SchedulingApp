@@ -50,7 +50,7 @@ app.use('/', homeRoutes);
 app.use('*', (req,res) => { 
     //Any other route that is not handled by our server
     //Add an error page for routes that dont exist on our server
-    res.status(404).json({error: "not found"})
+    res.sendFile(path.join(__dirname + '../../frontend/public/errorPage/index.html'))
 })
 
 //Database

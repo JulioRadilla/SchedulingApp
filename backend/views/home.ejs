@@ -150,24 +150,55 @@
 
         const tasksMessage = document.getElementById("task-message");
         tasksMessage.innerHTML = '';
-
+          
         displayDay()
 
         if (tasks.length > 0) {
-            tasks.forEach(task => {
-                const taskElement = document.createElement("p");
-                taskElement.innerHTML = `Task: ${task.taskTitle}<br>Date: ${task.date}<br>Time: ${task.time}<br>Description: ${task.description}`;
-                tasksMessage.appendChild(taskElement);
-            });
+          // Sort tasks chronologically by their scheduled time
+          // The compareTasksByTime function is used as a callback to determine the order.
+          // This ensures tasks are displayed in ascending order of time, from earliest to latest. 
+          const sortedTasks = tasks.sort(compareTasksByTime);
+
+          // Iterate through sorted tasks and display them
+          sortedTasks.forEach(task => {
+          const taskElement = document.createElement("p");
+          taskElement.innerHTML = `Task: ${task.taskTitle}<br>Date: ${task.date}<br>Time: ${task.time}<br>Description: ${task.description}`;
+          tasksMessage.appendChild(taskElement);
+        });
         } else {
-            const noTasksMessage = document.createElement("p");
-            noTasksMessage.innerHTML = "No tasks for this date! Use 'Create Task' to plan something or enjoy a free day. 🌟";
-            tasksMessage.appendChild(noTasksMessage);
+          const noTasksMessage = document.createElement("p");
+          noTasksMessage.innerHTML = "No tasks for this date! Use 'Create Task' to plan something or enjoy a free day. 🌟";
+          tasksMessage.appendChild(noTasksMessage);
         }
       } catch (error) {
           console.error('Error fetching tasks:', error);
       }
     }
+
+  //This function takes two tasks and compares their times using the parseTime function.
+  function compareTasksByTime(task1, task2) {
+    const time1 = parseTime(task1.time);
+    const time2 = parseTime(task2.time);
+    //Calculates the time difference in minutes negative result indicates task1 is earlier, 
+    //positive means task1 is later, and zero means they occur at the same time.
+    return time1 - time2;
+  } 
+
+  //This function takes a time string in the format "HH:mm AM/PM" and
+  //converts it into minutes since midnight.
+  function parseTime(timeString) {
+    const [time, period] = timeString.split(' ');
+    const [hours, minutes] = time.split(':');
+    //Makes it to military time to compare 
+    let parsedHours = parseInt(hours, 10);
+    if (period === 'PM' && parsedHours !== 12) {
+      parsedHours += 12;
+    } else if (period === 'AM' && parsedHours === 12) {
+      parsedHours = 0;
+    }
+
+    return parsedHours * 60 + parseInt(minutes, 10);
+  }
 
   </script>
 </body>
