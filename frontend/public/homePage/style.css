@@ -42,7 +42,7 @@ header .navbar {
   width: 90px;
   cursor: pointer;
 }
-.buttons{
+.buttons {
   display: flex;
   align-items: center;
 }
@@ -71,7 +71,7 @@ header .navbar {
   align-items: center;
   gap: 10px;
 }
-.calendar{
+.calendar {
   display: flex;
   align-items: center;
   gap: 1em;
@@ -100,7 +100,12 @@ header .navbar {
 }
 .task {
   padding: 2rem 0;
-  font-size: 30px;
+  font-size: inherit;
+}
+.task-title {
+  margin-top: 25px;
+  margin-bottom: -20px;
+  font-size: 40px;
 }
 .task-message {
   display: flex;
@@ -156,4 +161,146 @@ footer ul li,
 }
 footer ul li:hover {
   color: #e0e0e0;
+}
+/*Task rows*/
+.movements {
+  border: solid;
+  margin-top: 20px;
+  border-color: #666;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 580px;
+  width: 890px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.movements__row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-style: solid;
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  font-size: 15px;
+}
+.no-task {
+  text-align: center;
+  justify-content: center;
+}
+.details {
+  border-style: solid;
+  background-color: white;
+  border-color: #49a6fc;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #49a6fc;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.details:hover,
+.done:hover {
+  background-color: #e2e2e2;
+}
+.done {
+  border-style: solid;
+  background-color: white;
+  border-color: red;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: red;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.no-task {
+  text-align: center;
+}
+.description-info {
+  padding: 0 18px;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+.bold {
+  font-weight: bold;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60rem;
+  background-color: #f3f3f3;
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
+  border-radius: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(100px);
+  z-index: 100;
+  transition: all 0.5s;
+}
+
+.modal__header {
+  font-size: 3rem;
+  margin-bottom: 4.5rem;
+  line-height: 1.5;
+}
+
+.btn--close-modal {
+  font-family: inherit;
+  color: inherit;
+  position: absolute;
+  top: 0.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.hidden-movements {
+  border: none;
+  box-shadow: none;
+  overflow-y: hidden;
+}
+
+.task-title {
+  padding-bottom: 50px;
+  text-align: center;
+}
+/* width */
+.movements::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+.movements::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+.movements::-webkit-scrollbar-thumb {
+  background: #49a6fc;
+  border-radius: 100px;
+  size: 5px;
+}
+
+/* Handle on hover */
+.movements::-webkit-scrollbar-thumb:hover {
+  background: #afafaf;
 }
