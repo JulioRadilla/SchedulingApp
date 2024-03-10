@@ -175,9 +175,7 @@ footer ul li:hover {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 .movements__row {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: block;
   border-style: solid;
   margin: 20px;
   border-radius: 15px;
@@ -205,67 +203,20 @@ footer ul li:hover {
 .done {
   border-style: solid;
   background-color: white;
-  border-color: red;
+  border-color: green;
   border-radius: 15px;
   padding: 10px 20px;
   cursor: pointer;
-  color: red;
+  color: green;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .no-task {
   text-align: center;
 }
-.description-info {
-  padding: 0 18px;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
+
 .bold {
   font-weight: bold;
-}
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 60rem;
-  background-color: #f3f3f3;
-  padding: 5rem 6rem;
-  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  transition: all 0.5s;
-  border-radius: 10px;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(100px);
-  z-index: 100;
-  transition: all 0.5s;
-}
-
-.modal__header {
-  font-size: 3rem;
-  margin-bottom: 4.5rem;
-  line-height: 1.5;
-}
-
-.btn--close-modal {
-  font-family: inherit;
-  color: inherit;
-  position: absolute;
-  top: 0.5rem;
-  right: 2rem;
-  font-size: 2rem;
-  cursor: pointer;
-  border: none;
-  background: none;
 }
 
 .hidden {
@@ -282,6 +233,13 @@ footer ul li:hover {
 .task-title {
   padding-bottom: 50px;
   text-align: center;
+}
+.task {
+  max-width: 250px;
+  font-size: 15px;
+}
+.time {
+  font-size: 15px;
 }
 /* width */
 .movements::-webkit-scrollbar {
@@ -303,4 +261,31 @@ footer ul li:hover {
 /* Handle on hover */
 .movements::-webkit-scrollbar-thumb:hover {
   background: #afafaf;
+}
+.content {
+  display: block;
+  margin-top: 20px;
+}
+.description {
+  font-size: 20px;
+}
+.p-content {
+  font-size: 15px;
+  color: black;
+  font-weight: lighter;
+  margin-left: 20px;
+  word-break: break-word;
+  margin-bottom: 50px;
+  padding-top: 5px;
+}
+.hiddenC {
+  display: none;
+}
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+span {
+  font-weight: bold;
 }
