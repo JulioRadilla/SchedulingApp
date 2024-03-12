@@ -55,7 +55,7 @@ header .navbar {
   margin-left: 5px;
   cursor: pointer;
 }
-.buttons{
+.buttons {
   display: flex;
   align-items: center;
 }
@@ -109,6 +109,9 @@ input {
   border-radius: 5px;
   border: 1px solid var(--Navy-100, #bdc6d4);
   background: rgba(0, 0, 0, 0);
+  height: 120px;
+  width: 452px;
+  padding: 8px;
 }
 
 .input-title {

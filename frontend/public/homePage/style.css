@@ -227,10 +227,6 @@ footer ul li:hover {
   text-align: center;
 }
 
-.bold {
-  font-weight: bold;
-}
-
 .hidden {
   visibility: hidden;
   opacity: 0;
@@ -300,4 +296,7 @@ footer ul li:hover {
 }
 span {
   font-weight: bold;
+}
+.highlight {
+  border-color: rgb(0, 208, 0);
 }

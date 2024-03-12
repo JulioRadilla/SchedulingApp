@@ -69,6 +69,12 @@
                         <button class="details btn--show-modal">view details</button>
                         <button class="delete" onclick="deleteTask('<%= task._id %>')">delete</button>
                       </div>
+                      <div class="content hiddenC">
+                        <h2 class="description">Description:</h2>
+                        <p class="p-content">
+                          <%= task.description %>
+                        </p>
+                      </div>    
                   <% }); %>
               <% } else { %>
                   <!-- No tasks for this date message -->
@@ -179,17 +185,41 @@
             sortedTasks.forEach((task) => {
               const html = `
               <div id="${task._id}" class="movements__row">
-                <div class="movements__type task"><span class="bold">Title:</span> ${task.taskTitle}</div>
-                <div class="movements__value"><span class="bold">Date:</span> ${task.date}</div>
-                <div class="movements_desc"><span class="bold">Description:</span> ${task.description}</div>
-                <div class="movements_time"><span class="bold">Time:</span> ${task.time}</div>
-                <button class="details btn--show-modal">view details</button>
-                <button class="done">not done</button>
-                <button class="delete" onclick="deleteTask('${task._id}')">delete</button>                
+                <div class="info ">
+                  <div class="task"><span class='bold'>Task: </span>${task.taskTitle}</div>
+                  <div class="time"><span class='bold'>Start Time: </span>${task.time}</div>
+                  <button class="details">view details</button>
+                  <button class="done">not done</button>
+                  <button class="delete" onclick="deleteTask('${task._id}')">delete</button>   
+                </div>
+                <div class="content hiddenC">
+                  <h2 class="description">Description:</h2>
+                  <p class="p-content">
+                   ${task.description}
+                  </p>
+                </div>              
                 </div>
               `
               containerMovements.insertAdjacentHTML('afterbegin', html)
               containerMovements.classList.remove('hidden-movements')
+              const details = document.querySelector(".details");
+              const content = document.querySelector(".content");
+              const notD = document.querySelector('.done')
+              const moveR = document.querySelector('.movements__row')
+
+              const show_content = function (e) {
+                e.preventDefault();
+                const on = content.classList.toggle("hiddenC");
+              };
+              const color = function(e){
+                e.preventDefault()
+                const add = moveR.classList.toggle('highlight')
+              }
+
+              notD.addEventListener('click', color)
+
+              details.addEventListener("click", show_content);
+
             });
           } else {
             const noTasksMessage = document.createElement("p");
