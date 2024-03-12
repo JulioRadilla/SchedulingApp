@@ -61,20 +61,14 @@ header .navbar {
 }
 /*Form*/
 .container {
-  min-height: 100vh;
-  display: flex;
-  margin-left: 100px;
+  height: 100vh;
+  width: 100vh;
   align-items: center;
-  background-color: #fff;
+  justify-content: center;
 }
 .main-wrapper {
-  text-align: center;
   display: flex;
-  width: 500px;
-  height: 600px;
-  background-color: #fff;
-  margin-top: -50px;
-  border-radius: 20px;
+  margin-left: 150px;
 }
 .profile {
   display: inline;
@@ -86,13 +80,14 @@ header .navbar {
   margin-top: 30px;
 }
 .prof-title {
-  margin-top: 20px;
-  margin-left: 70px;
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 30px;
 }
 .upload {
-  height: 250px;
   width: 250px;
   cursor: pointer;
+  border: none;
 }
 .p-upload {
   cursor: pointer;

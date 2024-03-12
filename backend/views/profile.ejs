@@ -58,8 +58,20 @@
     <div class="container">
       <div class="main-wrapper">
         <div class="profile">
-          <img class="upload" src="../src/upload.png" />
-          <p class="p-upload">Upload Picture</p>
+          <img
+            class="upload"
+            src="../src/upload.png"
+            id="uploadedImage"
+            width="250px"
+            height="250px"
+          />
+          <input
+            type="file"
+            id="fileInput"
+            name="avatar"
+            accept="image/png, image/jpeg"
+            class="upload"
+          />
         </div>
         <div class="form-content">
           <form id="updateProfileForm" onsubmit="updateProfile(event);">
@@ -152,6 +164,24 @@
             // Handle error, display error messages, etc.
           });
       }
+      const fileInput = document.getElementById("fileInput");
+      const uploadedImage = document.getElementById("uploadedImage");
+      fileInput.addEventListener("change", () => {
+        // Check if any file is selected
+        if (fileInput.files && fileInput.files[0]) {
+          // Create a FileReader object
+          const reader = new FileReader();
+
+          // Set up event listener for when the file is loaded
+          reader.onload = function (e) {
+            // Set the source of the image tag to the uploaded image
+            uploadedImage.src = e.target.result;
+          };
+
+          // Read the file as a data URL
+          reader.readAsDataURL(fileInput.files[0]);
+        }
+      });
     </script>
   </body>
 </html>
