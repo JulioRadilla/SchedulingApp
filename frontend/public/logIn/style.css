@@ -52,7 +52,6 @@ input {
   text-indent: 15px;
 }
 ::placeholder {
-  padding-left: px;
   font-size: 15px;
 }
 button {

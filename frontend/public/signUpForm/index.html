@@ -14,11 +14,17 @@
       </div>
       <p>Sign up to create an account!</p>
       <form action="/signUpForm" method="POST" id="signUpForm">
-        <div id="errorMessage" style="display: none;">
-          <p style="color: red;" >Email already in use!</p>
+        <div id="errorMessage" style="display: none">
+          <p style="color: red">Email already in use!</p>
         </div>
         <div class="name">
-          <input id="fullName" type="text" placeholder="Full Name" name="fullName" required />
+          <input
+            id="fullName"
+            type="text"
+            placeholder="Full Name"
+            name="fullName"
+            required
+          />
         </div>
         <div class="phone">
           <input
@@ -30,7 +36,13 @@
           />
         </div>
         <div class="email">
-          <input id="email" type="email" placeholder="Email" name="email" required />
+          <input
+            id="email"
+            type="email"
+            placeholder="Email"
+            name="email"
+            required
+          />
         </div>
         <div class="pass">
           <input
@@ -46,28 +58,31 @@
       <p>Already have an account? <a href="/login">Log in here</a></p>
     </div>
     <script>
-      document.getElementById('signUpForm').addEventListener('submit', async function (event) {
-        event.preventDefault();
+      document
+        .getElementById("signUpForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-        const response = await fetch(this.action, {
-          method: this.method,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            fullName: document.getElementById('fullName').value,
-            phoneNumber: document.getElementById('phoneNumber').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
-          }),
+          const response = await fetch(this.action, {
+            method: this.method,
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              fullName: document.getElementById("fullName").value,
+              phoneNumber: document.getElementById("phoneNumber").value,
+              email: document.getElementById("email").value,
+              password: document.getElementById("password").value,
+            }),
+          });
+
+          if (!response.ok) {
+            document.getElementById("errorMessage").style.display = "block";
+            document.querySelector(".container").style.height = "545px";
+          } else {
+            window.location.href = "/home";
+          }
         });
-
-        if (!response.ok) {
-          document.getElementById('errorMessage').style.display = 'block'
-        } else {
-          window.location.href = '/home'
-        }
-      });
     </script>
   </body>
 </html>
