@@ -10,8 +10,7 @@ const session = require('express-session');
 const homeRoutes = require('./routes/home.js');
 
 
-const app = express();
-
+const app = express()
 //Enviroment Variables
 require('dotenv').config({ path: './.env' });
 

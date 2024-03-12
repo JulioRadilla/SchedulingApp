@@ -198,7 +198,7 @@ module.exports =  {
         res.status(500).send({ message: error.message})
       }
     },
-    getTaskByDate: async (req,res) =>{
+    getTaskByDate: async (req,res) => {
       try {
         const userId = req.session.user.id;
         const date = req.query.date;
@@ -267,6 +267,22 @@ module.exports =  {
         res.status(500).json({ error: `Failed to update user profile: ${error.message}` });
       }
   },
+  deleteTask: async (req, res) => {
+    try{
+      const taskId = req.body.taskId
+      console.log(req.body);
+
+      console.log(`Deleting task with associated ID: ${taskId}`)
+
+      // delete the task itself
+      await Task.findByIdAndDelete(taskId);
+
+      res.status(200).json({ message: 'Task deleted successfully' });
+    } catch (error){
+      console.error('Error deleting task:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
 }
 
 

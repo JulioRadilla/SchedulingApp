@@ -18,6 +18,7 @@ router.post('/login', homeController.loginUser);
 router.post('/signUpForm', homeController.signUpUser);
 router.post('/create-task', homeController.createTask);
 router.put('/updateUserProfile', homeController.updateUserProfile);
+router.delete('/delete-task', homeController.deleteTask);
 
 /*
 Create- POST

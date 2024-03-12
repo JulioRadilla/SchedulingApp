@@ -63,11 +63,11 @@
               <% if (matchingTasks.length > 0) { %>
                   <!-- Iterate through matching tasks and display them -->
                   <% matchingTasks.forEach(task => { %>
-                      <div class="movements__row">
+                      <div id="<%=task._id%>" class="movements__row">
                         <div class="movements__type task"><%= task.taskTitle %></div>
                         <div class="movements__value">Date: <%= task.date %></div>
                         <button class="details btn--show-modal">view details</button>
-                        <button class="done">not done</button>
+                        <button class="delete" onclick="deleteTask('<%= task._id %>')">delete</button>
                       </div>
                   <% }); %>
               <% } else { %>
@@ -175,16 +175,17 @@
             // This ensures tasks are displayed in ascending order of time, from earliest to latest.
             const sortedTasks = tasks.sort(compareTasksByTime);
 
-            // Iterate through sorted tasks and display them
+            // Iterate through sorted tasks and display them on the day the user logs in 
             sortedTasks.forEach((task) => {
               const html = `
-              <div class="movements__row">
+              <div id="${task._id}" class="movements__row">
                 <div class="movements__type task"><span class="bold">Title:</span> ${task.taskTitle}</div>
                 <div class="movements__value"><span class="bold">Date:</span> ${task.date}</div>
                 <div class="movements_desc"><span class="bold">Description:</span> ${task.description}</div>
                 <div class="movements_time"><span class="bold">Time:</span> ${task.time}</div>
                 <button class="details btn--show-modal">view details</button>
                 <button class="done">not done</button>
+                <button class="delete" onclick="deleteTask('${task._id}')">delete</button>                
                 </div>
               `
               containerMovements.insertAdjacentHTML('afterbegin', html)
@@ -208,7 +209,7 @@
         const time2 = parseTime(task2.time);
         //Calculates the time difference in minutes negative result indicates task1 is earlier,
         //positive means task1 is later, and zero means they occur at the same time.
-        return time1 - time2;
+        return time1 + time2;
       }
 
       //This function takes a time string in the format "HH:mm AM/PM" and
@@ -225,6 +226,31 @@
         }
 
         return parsedHours * 60 + parseInt(minutes, 10);
+      }
+      async function deleteTask(taskId) {
+        try {
+          console.log('Deleting task with ID:', taskId);
+
+          const response = await fetch('/delete-task', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ taskId: taskId }),
+          });
+
+          if (response.ok) {
+            console.log('Task deleted successfully');
+            
+            // Refresh the page with the current date as a query parameter
+            updateTasks()
+
+          } else {
+            console.error('Failed to delete task');
+          }
+        } catch (error) {
+          console.error('Error deleting task:', error);
+        }
       }
     </script>
   </body>

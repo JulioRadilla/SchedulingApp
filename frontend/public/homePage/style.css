@@ -212,7 +212,19 @@ footer ul li:hover {
   color: red;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-
+.delete {
+  background-color: white;
+  border-style: solid;
+  border-color: red;
+  border-radius: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: red;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.delete:hover {
+  background-color: #e2e2e2;
+}
 .no-task {
   text-align: center;
 }
