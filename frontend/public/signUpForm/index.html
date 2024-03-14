@@ -14,8 +14,8 @@
       </div>
       <p>Sign up to create an account!</p>
       <form action="/signUpForm" method="POST" id="signUpForm">
-        <div id="errorMessage" style="display: none">
-          <p style="color: red">Email already in use!</p>
+        <div id="errorMessage">
+          <p>Email already in use!</p>
         </div>
         <div class="name">
           <input
@@ -57,32 +57,6 @@
       </form>
       <p>Already have an account? <a href="/login">Log in here</a></p>
     </div>
-    <script>
-      document
-        .getElementById("signUpForm")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
-
-          const response = await fetch(this.action, {
-            method: this.method,
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              fullName: document.getElementById("fullName").value,
-              phoneNumber: document.getElementById("phoneNumber").value,
-              email: document.getElementById("email").value,
-              password: document.getElementById("password").value,
-            }),
-          });
-
-          if (!response.ok) {
-            document.getElementById("errorMessage").style.display = "block";
-            document.querySelector(".container").style.height = "545px";
-          } else {
-            window.location.href = "/home";
-          }
-        });
-    </script>
+    <script src="signUpForm/signUpForm.js"></script>
   </body>
 </html>

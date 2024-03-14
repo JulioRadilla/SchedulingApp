@@ -70,3 +70,9 @@ button:hover {
   background-color: rgb(225, 225, 225);
   color: #49a6fc;
 }
+#errorMessage{
+  display: none;
+}
+#errorMessage > p {
+  color: red;
+}

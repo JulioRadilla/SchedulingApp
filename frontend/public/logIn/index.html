@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log In</title>
-    <link href="style.css" rel="stylesheet" />
+    <link href="./logIn/style.css" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
@@ -13,8 +13,8 @@
         <h1>TargetTracker</h1>
       </div>
       <form id="loginForm" action="/login" method="POST">
-        <div id="errorMessage" style="display: none">
-          <p style="color: red">Invalid email or password</p>
+        <div id="errorMessage">
+          <p>Invalid email or password</p>
         </div>
         <div class="name">
           <input
@@ -38,34 +38,6 @@
       </form>
     </div>
 
-    <script>
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent the default form submission
-
-          fetch(this.action, {
-            method: this.method,
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: document.getElementById("email").value,
-              password: document.getElementById("password").value,
-            }),
-          })
-            .then((response) => {
-              if (!response.ok) {
-                document.getElementById("errorMessage").style.display = "block";
-                
-              } else {
-                window.location.href = "/home";
-              }
-            })
-            .catch((error) => {
-              console.error("error:" + error);
-            });
-        });
-    </script>
+    <script src="logIn/login.js"></script>
   </body>
 </html>
