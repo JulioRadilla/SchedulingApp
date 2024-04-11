@@ -81,8 +81,7 @@ header .navbar {
   color: #49a6fc;
 }
 .hero-content .image .buddy {
-  height: 400px;
-  width: auto;
+ width: 100%;
 }
 /*FOOTER*/
 footer {
