@@ -25,9 +25,8 @@ function updateProfile(event) {
       return;
     }
 
-    console.log(data); // Add this line to log the FormData object
 
-    fetch("http://localhost:3000/updateUserProfile", {
+    fetch("http://localhost:5000/updateUserProfile", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +34,6 @@ function updateProfile(event) {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log("Response from server:", response);
         if (response.ok) {
           document.getElementById("successMessage").style.display = "block";
           document.getElementById("updateProfileForm").reset();

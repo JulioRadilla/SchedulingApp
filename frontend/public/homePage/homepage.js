@@ -37,7 +37,6 @@
           .join("/");
         displayDate();
         displayDay();
-        console.log("Went back. Formatted Date:", formattedDate);
         // Call a function to update the tasks based on the new formattedDate
         updateTasks();
       }
@@ -55,7 +54,6 @@
           .join("/");
         displayDate();
         displayDay();
-        console.log("Went forward. Formatted Date:", formattedDate);
         // Call a function to update the tasks based on the new formattedDate
         updateTasks();
       }
@@ -160,7 +158,6 @@
       }
       async function deleteTask(taskId) {
         try {
-          console.log('Deleting task with ID:', taskId);
 
           const response = await fetch('/delete-task', {
             method: 'DELETE',
@@ -171,7 +168,6 @@
           });
 
           if (response.ok) {
-            console.log('Task deleted successfully');
             
             // Refresh the page with the current date as a query parameter
             updateTasks()
